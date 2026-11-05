@@ -2,10 +2,10 @@ import re
 import streamlit as st
 Invalidname=type('Invalidname', (Exception,), {})
 
-"""Exception to be raised when the name is invalid 
-(empty or contains numeric values or special characters)."""
+
 
 def Invaliddata(name,mark):
+    #Exception to be raised when the name is invalid (empty or contains numeric values or special characters)
     if (not name.strip()):
         raise Invalidname("Name should not be empty")
     if (re.search(r'[^a-zA-Z\s]+', name.strip())) :
@@ -113,6 +113,12 @@ if view:
                         <td style="padding: 12px; border: 1px solid #ddd; {grade_color}">{Grade}</td>
                     </tr>
                 """
+            avg=sum(st.session_state['dict_student_data']['Mark'])/len(st.session_state['dict_student_data']['Mark'])
+            highest_mark=max(st.session_state['dict_student_data']['Mark'])
+            lowest_mark=min(st.session_state['dict_student_data']['Mark'])  
+            table_html += f"""<tr style="background-color: #f2f2f2; font-weight: bold;font-family: calibri;font-size: 18px;">
+                    <td colspan="3" style="padding: 12px; border: 1px solid #ddd;"><i>Average : {avg:.2f}</i>---<i>Highest: {highest_mark}</i>---<i>Lowest: {lowest_mark}</i></td>  
+                </tr>"""
             table_html += """</tbody> </table>"""
             st.markdown(table_html, unsafe_allow_html=True)
     except Exception as e:
