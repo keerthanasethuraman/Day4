@@ -6,6 +6,7 @@ Invalidname=type('Invalidname', (Exception,), {})
 
 
 def Invaliddata(name,mark):
+    #Raise exceptions for invalid data
     if (not name.strip()):
         raise Invalidname("Name should not be empty")
     if (re.search(r'[^a-zA-Z\s]+', name.strip())) :
