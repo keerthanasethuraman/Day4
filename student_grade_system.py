@@ -2,10 +2,10 @@ import re
 import streamlit as st
 Invalidname=type('Invalidname', (Exception,), {})
 
-"""Exception to be raised when the name is invalid 
-(empty or contains numeric values or special characters)."""
+
 
 def Invaliddata(name,mark):
+    """Exception to be raised when the name is invalid (empty or contains numeric values or special characters)."""
     if (not name.strip()):
         raise Invalidname("Name should not be empty")
     if (re.search(r'[^a-zA-Z\s]+', name.strip())) :
